@@ -1,0 +1,39 @@
+[
+
+    {
+        "name": "Home",
+        "title": "Home",
+        "template": "Home",
+        "path":"/",
+        "scripts": [
+            "Home"
+        ],
+        "entry": [
+            "./src/static/scripts/Home.ts"
+        ]
+    },
+    {
+        "name": "About",
+        "title": "About",
+        "template": "About",
+        "path":"/about",
+        "scripts": [
+            "About"
+        ],
+        "entry": [
+            "./src/static/scripts/About.ts"
+        ]
+    },
+    {
+        "name": "AdminLogin",
+        "title": "AdminLogin",
+        "template": "/private/AdminLogin",
+        "path":"/private/admin-login",
+        "scripts": [
+            "AdminLogin"
+        ],
+        "entry": [
+            "./src/static/scripts/private/AdminLogin.ts"
+        ]
+    }
+]

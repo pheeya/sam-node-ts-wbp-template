@@ -1,29 +1,8 @@
 const path = require("path");
 const htmlPlugin = require("html-webpack-plugin");
+const fs = require("fs");
 
-
-// add all view entries here, important
-
-module.exports.views = [
-  {
-    name: "Home",
-    title: "Home",
-    template: "Home",
-    scripts: ["Home"],
-    entry: ["./src/static/scripts/Home.ts"],
-  },
-  {
-    name: "About",
-    title: "About",
-    template: "About",
-    scripts: ["About"],
-    entry: ["./src/static/scripts/About.ts"],
-  },
-];
-
-
-
-// no need to do anything below this point
+module.exports.views = JSON.parse(fs.readFileSync("./src/views.json"));
 
 module.exports.htmlPlugins = function () {
   var plugins = [];
@@ -32,9 +11,13 @@ module.exports.htmlPlugins = function () {
     var newhtml = new htmlPlugin({
       base: "./",
       title: views[i].name,
-      filename: path.resolve(__dirname, `./dist/views/${views[i].title}.hbs`),
+      filename: path.resolve(
+        __dirname,
+        `./dist/views/${views[i].template}.hbs`
+      ),
       template: path.resolve(`./src/views/${views[i].template}.hbs`),
       chunks: [...views[i].scripts],
+      publicPath: "/",
     });
     plugins.push(newhtml);
   }
@@ -49,7 +32,3 @@ module.exports.entries = function () {
   }
   return entries;
 };
-// base: "./",
-// title: "Home",
-// filename: path.resolve(__dirname, "./dist/views/Home.hbs"),
-// template: path.resolve("./src/views/Home.hbs"),
